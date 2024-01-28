@@ -145,7 +145,7 @@ const profile = async(req,res) => {
     const id = req.params.id;
 
     // Consulta para sacar los datos del usuario
-   await User.findById({id})
+   await User.findById(id)
     .then(async (userProfile) => {
         
         if (!userProfile) {
