@@ -1,6 +1,7 @@
 // Importar dependencias y modulos
 const bcrypt = require("bcrypt");
 const User = require("../models/user");
+const jwt = require('../services/jwt')
 const { param } = require("../routes/user");
 
 // Acciones de prueba
@@ -114,7 +115,7 @@ const login = (req, res) => {
       }
 
       // Devolver Token
-      const token = false;
+      const token = jwt.createToken(user);
 
       // Devolver Datos del usuario
       return res.status(200).send({
