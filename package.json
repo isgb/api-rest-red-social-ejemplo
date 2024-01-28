@@ -1,0 +1,11 @@
+{
+  "name": "api-rest-red-social",
+  "version": "1.0.0",
+  "description": "API REST con Mongo, Node, Express, JWT para una red social",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "ISGB",
+  "license": "MIT"
+}
