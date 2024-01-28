@@ -146,6 +146,7 @@ const profile = async(req,res) => {
 
     // Consulta para sacar los datos del usuario
    await User.findById(id)
+    .select({password:0, role: 0})
     .then(async (userProfile) => {
         
         if (!userProfile) {
