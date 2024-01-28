@@ -140,8 +140,44 @@ const login = (req, res) => {
     });
 };
 
+const profile = async(req,res) => {
+    // Recibir el parametro del id de usuario por la url
+    const id = req.params.id;
+
+    // Consulta para sacar los datos del usuario
+   await User.findById({id})
+    .then(async (userProfile) => {
+        
+        if (!userProfile) {
+          return res.status(404).send({
+            status: "error",
+            message: "No existe el usuario o hay un error",
+          });
+        }
+
+        // Devolver el resultado
+        // Posteriormente: devolver informacion de follows
+        return res.status(200).send({
+            status: "success",
+            user: userProfile
+          });
+  
+      })
+      .catch((error) => {
+        // si llega un error
+        if (error)
+          return res.status(404).send({
+            status: "error",
+            message: "No existe el usuario",
+          });
+      });
+
+   
+}
+
 module.exports = {
   pruebaUser,
   register,
   login,
+  profile
 };
