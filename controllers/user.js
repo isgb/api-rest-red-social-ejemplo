@@ -93,8 +93,9 @@ const login = (req, res) => {
 
   // Buscar en la bbdd si existe
   User.findOne({ email: params.email })
-    .select({ password: 0 })
+    // .select({ "password": 0 })
     .then(async (user) => {
+        
       if (!user) {
         return res.status(404).send({
           status: "success",
@@ -103,15 +104,28 @@ const login = (req, res) => {
       }
 
       // Comprobar la contraseña
+      let pwd = bcrypt.compareSync(params.password, user.password)
+
+      if(!pwd){
+        return res.status(400).send({
+            status: "error",
+            message: "No te has identificado correctamente"
+        })
+      }
 
       // Devolver Token
+      const token = false;
 
-      // Datos del usuario
-
+      // Devolver Datos del usuario
       return res.status(200).send({
         status: "success",
-        message: "Acción de login",
-        user,
+        message: "Te has identificado correctamente",
+        user:{
+            id: user._id,
+            name: user.name,
+            nick: user.nick
+        },
+        token
       });
     })
     .catch((error) => {
