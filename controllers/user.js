@@ -1,5 +1,6 @@
 // Importar dependencias y modulos
 const bcrypt = require("bcrypt");
+const mongoosePagination = require("mongoose-pagination")
 const User = require("../models/user");
 const jwt = require('../services/jwt')
 const { param } = require("../routes/user");
@@ -172,13 +173,56 @@ const profile = async(req,res) => {
             message: "No existe el usuario",
           });
       });
+}
 
-   
+const list = (req,res) => {
+    // Controlar en que pagina estamos
+    let page = 1;
+    if(req.params.page){
+        page = req.params.page;
+    }
+    page = parseInt(page);
+
+    // Consulta con mongoose paginate
+    let itemsPerPage = 1;
+
+    User.find().sort('_id').paginate(page,itemsPerPage)
+    .then((users,total) => {
+
+        if(!users){
+            return res.status(500).send({
+                status: "error",
+                message: "No hay usuarios disponibles",
+                users
+            })
+        }
+
+        return res.status(200).send({
+            status: "success",
+            users,
+            page,
+            itemsPerPage,
+            total,
+            pages: false
+        })
+    })
+    .catch((error) => {
+        return res.status(500).send({
+            status: "error",
+            message: "Error en la consulta",
+            error
+        })
+    })
+
+    // Devolver resultados (posteriormente info follow)
+
+  
 }
 
 module.exports = {
   pruebaUser,
   register,
   login,
-  profile
+  profile,
+  list
 };
