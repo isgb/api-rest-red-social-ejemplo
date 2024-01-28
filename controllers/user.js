@@ -22,17 +22,14 @@ const register =  (req, res) => {
     });
   }
 
-    // Crear objeto de usuario
-    let user_to_save = new User(params)
-
     // control de usuarios duplicados
     User.find({
         $or: [
-            { email: user_to_save.email.toLowerCase() },
-            { nick: user_to_save.nick.toLowerCase() },
+            { email: params.email.toLowerCase() },
+            { nick: params.nick.toLowerCase() },
         ]
  
-    }).then((users) => {       
+    }).then(async (users) => {       
         // si existe un usuario con el mismo nick o email
         if (users && users.length >= 1) {
             return res.status(200).send({
@@ -41,16 +38,35 @@ const register =  (req, res) => {
             });
         }
  
-        // cifrar la contraseña        
+        // cifrar la contraseña
+        let pwd = await bcrypt.hash(params.password, 10);
+        // console.log(pwd)
+        params.password = pwd;
+
+         // Crear objeto de usuario
+        let user_to_save = new User(params)
  
         // guardar usuario bd
- 
-        // devolver resultado
-        return res.status(200).json({
-            status: "success",
-            message: "Accion de registro de usuarios",
-            // params,
-            user_to_save,
+        user_to_save.save()
+        .then((userStored) => {
+            
+            if(userStored){
+                // devolver resultado
+                return res.status(200).json({
+                    status: "success",
+                    message: "Usuario registrado correctamente",
+                    // params,
+                    user:userStored,
+                });
+            }
+        })
+        .catch((error) => {
+            // si llega un error
+            if (error)
+                return res.status(500).json({
+                    status: "error",
+                    message: "Error al guardar el usuario",
+                });
         });
  
     }).catch((error) => {
