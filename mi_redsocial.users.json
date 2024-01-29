@@ -1,0 +1,32 @@
+[{
+  "_id": {
+    "$oid": "65b682a145e0eea1ca8fb3a0"
+  },
+  "name": "Isaias",
+  "surname": "Gaona",
+  "nick": "isgb",
+  "email": "isgb@email.com",
+  "password": "$2b$10$kqPmXdLrcphAUmAiRQee6eM.k8fj2vLErIzKvg0oW33/18V/xX5Ly",
+  "role": "role_user",
+  "image": "default.png",
+  "created_at": {
+    "$date": "2024-01-28T16:36:49.676Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65b682c445e0eea1ca8fb3a5"
+  },
+  "name": "Isaias",
+  "surname": "Gaona",
+  "nick": "isgb2",
+  "email": "isg22b@email.com",
+  "password": "$2b$10$tza1OT1fGYTtD4sQIO4zC.Z2.GbMNLEtmzHK6CzHjVfZ8kqIXw1g.",
+  "role": "role_user",
+  "image": "default.png",
+  "created_at": {
+    "$date": "2024-01-28T16:37:24.080Z"
+  },
+  "__v": 0
+}]
