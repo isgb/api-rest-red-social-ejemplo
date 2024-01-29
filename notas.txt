@@ -11,3 +11,4 @@ npm i cors
 npm i nodemon --save-dev
 // quitar bcrypt-nodejs de package.json y aplicar npm update
 npm i bcrypt
+-------
