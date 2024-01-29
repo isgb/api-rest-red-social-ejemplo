@@ -175,48 +175,57 @@ const profile = async(req,res) => {
       });
 }
 
-const list = (req,res) => {
-    // Controlar en que pagina estamos
-    let page = 1;
-    if(req.params.page){
-        page = req.params.page;
-    }
-    page = parseInt(page);
+const list = async(req, res) => {
+  //  controlar en q pagina estamos
+  let page = parseInt(req.params.page) || 1;
 
-    // Consulta con mongoose paginate
-    let itemsPerPage = 1;
+  //  consulta con mongoose pagination
+  // limitar usuarios por pagina
+  let itemsPerPage = 5;
 
-    User.find().sort('_id').paginate(page,itemsPerPage)
-    .then((users,total) => {
+  // opciones de la paginacion
+  const options = {
+      page: page,
+      limit: itemsPerPage,
+      sort: { _id: -1 },
+      collation: {
+          locale: "es",
+      },
+      
+  };    
 
-        if(!users){
-            return res.status(500).send({
-                status: "error",
-                message: "No hay usuarios disponibles",
-                users
-            })
-        }
+  try {
+      // obtenes los usuarios
+      const users = await User.paginate({}, options);
 
-        return res.status(200).send({
-            status: "success",
-            users,
-            page,
-            itemsPerPage,
-            total,
-            pages: false
-        })
-    })
-    .catch((error) => {
-        return res.status(500).send({
-            status: "error",
-            message: "Error en la consulta",
-            error
-        })
-    })
+      // ontenes el numero total de usuarios
+      const total = await User.countDocuments();
 
-    // Devolver resultados (posteriormente info follow)
+      // si no existe un usuario devolvermos el error
+      if (!users)
+          return res.status(404).json({
+              status: "Error",
+              message: "No se han encontrado usuarios",
+          });
 
-  
+      // devolver el resultado si todo a salido bien
+      return res.status(200).send({
+          status: "success",
+          users: users.docs,
+          page,
+          itemsPerPage,
+          total,
+          // redondeamos con ceil el numero de paginas con usuarios a mostrar
+          pages: Math.ceil(total / itemsPerPage)
+      });
+
+  } catch (error) {
+      return res.status(404).json({
+          status: "Error",
+          message: "Hubo un error al obtener los usuarios",
+          error: error.message,
+      });
+  }
 }
 
 module.exports = {
