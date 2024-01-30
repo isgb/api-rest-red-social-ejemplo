@@ -311,12 +311,37 @@ const update = async (req,res) =>{
 }
 
 const upload = (req,res) =>{
+
+  // Recoger el fichero de imagen y comprobar que existe
+  if(!req.file){
+    return res.status(404).send({
+      status: "error",
+      message: "peticion no incluye la imagen"
+    })
+  }
+
+  // Conseguir el  nombre del archivo
+  let image = req.file.originalname;
+
+  // Sacar la extension del archivo
+  let imageSplit = image.split("\.");
+  let extension = imageSplit[1];
+
+  // Comprobar extension
+
+  // Si no ex correcta, borrar archivo
+
+  // Si es correcta, gaurdar imagen en bbdd
+
+  // Devolver respuesta
+
   return res.status(200).send({
     status: "success",
     message: "Subida de imagenes",
     user: req.user,
     file: req.file,
-    files: req.files
+    files: req.files,
+    image
   })
 }
 
