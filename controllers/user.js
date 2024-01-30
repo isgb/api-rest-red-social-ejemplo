@@ -228,10 +228,104 @@ const list = async(req, res) => {
   }
 }
 
+const update = async (req,res) =>{
+
+  //Recoger info del usuario a actualizar
+  const userIdentity = req.user;
+  const userToUpdate = req.body;
+
+  //Eliminar campos sobrantes
+  delete userToUpdate.iat;
+  delete userToUpdate.exp;
+  delete userToUpdate.role;
+  delete userToUpdate.imagen;
+
+  // console.log(userToUpdate)
+  
+  //Comprobar si el usuario ya existe
+  User.find({
+    $or: [
+      { email: userToUpdate.email.toLowerCase() },
+      { nick: userToUpdate.nick.toLowerCase() },
+    ],
+  })
+    .then(async (users) => {
+
+      console.log(userToUpdate)
+      
+      let userIsset = false;
+      users.forEach(user => {
+        if(user && user._id != userIdentity.id){
+          userIsset = true;
+        }
+      });
+      
+      // si existe un usuario con el mismo nick o email
+      if (userIsset) {
+        return res.status(200).send({
+          status: "success",
+          message: "El usuario ya existe",
+        });
+      }
+     
+      if(userToUpdate.password){
+          // cifrar la contraseña
+          let pwd = await bcrypt.hash(userToUpdate.password, 10);
+          // console.log(pwd)
+          userToUpdate.password = pwd;
+      }
+
+      //Buscar y actualizar
+      let userUpdated = await User.findByIdAndUpdate(userIdentity.id, userToUpdate,{new:true})
+      .then(async (userUpdated) => { 
+
+
+        return res.status(200).send({
+          status: "success",
+          message: "Metodo de actualizar usuario",
+          user: userUpdated
+        });
+
+      })
+      .catch((error) => {
+        // si llega un error
+        if (error)
+          return res.status(500).json({
+            status: "error",
+            message: "Error en la actualizar usuarios",
+          });
+      });
+
+    })
+    .catch((error) => {
+      // si llega un error
+      if (error)
+        return res.status(500).json({
+          status: "error",
+          message: "Error en la consulta de usuarios",
+          error
+        });
+    });
+
+
+}
+
+const upload = (req,res) =>{
+  return res.status(200).send({
+    status: "success",
+    message: "Subida de imagenes",
+    user: req.user,
+    file: req.file,
+    files: req.files
+  })
+}
+
 module.exports = {
   pruebaUser,
   register,
   login,
   profile,
-  list
+  list,
+  update,
+  upload
 };

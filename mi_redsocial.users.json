@@ -269,4 +269,21 @@
     "$date": "2024-01-29T22:12:11.102Z"
   },
   "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65b9632ab316928ac27140f6"
+  },
+  "name": "Trinity3",
+  "surname": "Matrix3",
+  "bio": "Hola soy trinity3",
+  "nick": "trinity3",
+  "email": "trinity3@trinity3.com",
+  "password": "$2b$10$13tMAfgvGCqOn7wajXPf/.BLWpQkgcviV98iU8ULt9afrF4gvy3Tm",
+  "role": "role_user",
+  "image": "default.png",
+  "created_at": {
+    "$date": "2024-01-30T20:59:22.455Z"
+  },
+  "__v": 0
 }]
