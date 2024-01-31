@@ -5,6 +5,7 @@ const User = require("../models/user");
 const jwt = require('../services/jwt')
 const { param } = require("../routes/user");
 const fs = require("fs");
+const path = require("path");
 
 // Acciones de prueba
 const pruebaUser = (req, res) => {
@@ -364,20 +365,27 @@ const upload = (req, res) => {
 
   }
 
-  // Si no ex correcta, borrar archivo
+}
 
-  // Si es correcta, gaurdar imagen en bbdd
 
-  // Devolver respuesta
+const avatar = (req,res) => {
+  let fichero = req.params.file;
+  let ruta_fisica = "./uploads/avatars/"+fichero;
 
-  // return res.status(200).send({
-  //   status: "success",
-  //   message: "Subida de imagenes",
-  //   user: req.user,
-  //   file: req.file,
-  //   files: req.files,
-  //   image
-  // })
+  // GET http....api/imagen/nombre_del_fichero.jpg
+  fs.access(ruta_fisica, (error) => {
+      if(!error){
+        return res.sendFile(path.resolve(ruta_fisica));
+      }else{
+        return res.status(400).json({
+          status: "Error",
+          mensaje: "La imagen no existe",
+          error,
+          fichero,
+          ruta_fisica
+        });
+      }
+  })
 }
 
 module.exports = {
@@ -387,5 +395,6 @@ module.exports = {
   profile,
   list,
   update,
-  upload
+  upload,
+  avatar
 };
