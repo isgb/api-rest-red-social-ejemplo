@@ -4,6 +4,7 @@ const mongoosePagination = require("mongoose-pagination")
 const User = require("../models/user");
 const jwt = require('../services/jwt')
 const { param } = require("../routes/user");
+const fs = require("fs");
 
 // Acciones de prueba
 const pruebaUser = (req, res) => {
@@ -98,7 +99,7 @@ const login = (req, res) => {
   User.findOne({ email: params.email })
     // .select({ "password": 0 })
     .then(async (user) => {
-        
+
       if (!user) {
         return res.status(404).send({
           status: "success",
@@ -109,10 +110,10 @@ const login = (req, res) => {
       // Comprobar la contraseña
       let pwd = bcrypt.compareSync(params.password, user.password)
 
-      if(!pwd){
+      if (!pwd) {
         return res.status(400).send({
-            status: "error",
-            message: "No te has identificado correctamente"
+          status: "error",
+          message: "No te has identificado correctamente"
         })
       }
 
@@ -123,10 +124,10 @@ const login = (req, res) => {
       return res.status(200).send({
         status: "success",
         message: "Te has identificado correctamente",
-        user:{
-            id: user._id,
-            name: user.name,
-            nick: user.nick
+        user: {
+          id: user._id,
+          name: user.name,
+          nick: user.nick
         },
         token
       });
@@ -141,41 +142,41 @@ const login = (req, res) => {
     });
 };
 
-const profile = async(req,res) => {
-    // Recibir el parametro del id de usuario por la url
-    const id = req.params.id;
+const profile = async (req, res) => {
+  // Recibir el parametro del id de usuario por la url
+  const id = req.params.id;
 
-    // Consulta para sacar los datos del usuario
-   await User.findById(id)
-    .select({password:0, role: 0})
+  // Consulta para sacar los datos del usuario
+  await User.findById(id)
+    .select({ password: 0, role: 0 })
     .then(async (userProfile) => {
-        
-        if (!userProfile) {
-          return res.status(404).send({
-            status: "error",
-            message: "No existe el usuario o hay un error",
-          });
-        }
 
-        // Devolver el resultado
-        // Posteriormente: devolver informacion de follows
-        return res.status(200).send({
-            status: "success",
-            user: userProfile
-          });
-  
-      })
-      .catch((error) => {
-        // si llega un error
-        if (error)
-          return res.status(404).send({
-            status: "error",
-            message: "No existe el usuario",
-          });
+      if (!userProfile) {
+        return res.status(404).send({
+          status: "error",
+          message: "No existe el usuario o hay un error",
+        });
+      }
+
+      // Devolver el resultado
+      // Posteriormente: devolver informacion de follows
+      return res.status(200).send({
+        status: "success",
+        user: userProfile
       });
+
+    })
+    .catch((error) => {
+      // si llega un error
+      if (error)
+        return res.status(404).send({
+          status: "error",
+          message: "No existe el usuario",
+        });
+    });
 }
 
-const list = async(req, res) => {
+const list = async (req, res) => {
   //  controlar en q pagina estamos
   let page = parseInt(req.params.page) || 1;
 
@@ -185,50 +186,50 @@ const list = async(req, res) => {
 
   // opciones de la paginacion
   const options = {
-      page: page,
-      limit: itemsPerPage,
-      sort: { _id: -1 },
-      collation: {
-          locale: "es",
-      },
-      
-  };    
+    page: page,
+    limit: itemsPerPage,
+    sort: { _id: -1 },
+    collation: {
+      locale: "es",
+    },
+
+  };
 
   try {
-      // obtenes los usuarios
-      const users = await User.paginate({}, options);
+    // obtenes los usuarios
+    const users = await User.paginate({}, options);
 
-      // ontenes el numero total de usuarios
-      const total = await User.countDocuments();
+    // ontenes el numero total de usuarios
+    const total = await User.countDocuments();
 
-      // si no existe un usuario devolvermos el error
-      if (!users)
-          return res.status(404).json({
-              status: "Error",
-              message: "No se han encontrado usuarios",
-          });
-
-      // devolver el resultado si todo a salido bien
-      return res.status(200).send({
-          status: "success",
-          users: users.docs,
-          page,
-          itemsPerPage,
-          total,
-          // redondeamos con ceil el numero de paginas con usuarios a mostrar
-          pages: Math.ceil(total / itemsPerPage)
+    // si no existe un usuario devolvermos el error
+    if (!users)
+      return res.status(404).json({
+        status: "Error",
+        message: "No se han encontrado usuarios",
       });
+
+    // devolver el resultado si todo a salido bien
+    return res.status(200).send({
+      status: "success",
+      users: users.docs,
+      page,
+      itemsPerPage,
+      total,
+      // redondeamos con ceil el numero de paginas con usuarios a mostrar
+      pages: Math.ceil(total / itemsPerPage)
+    });
 
   } catch (error) {
-      return res.status(404).json({
-          status: "Error",
-          message: "Hubo un error al obtener los usuarios",
-          error: error.message,
-      });
+    return res.status(404).json({
+      status: "Error",
+      message: "Hubo un error al obtener los usuarios",
+      error: error.message,
+    });
   }
 }
 
-const update = async (req,res) =>{
+const update = async (req, res) => {
 
   //Recoger info del usuario a actualizar
   const userIdentity = req.user;
@@ -241,7 +242,7 @@ const update = async (req,res) =>{
   delete userToUpdate.imagen;
 
   // console.log(userToUpdate)
-  
+
   //Comprobar si el usuario ya existe
   User.find({
     $or: [
@@ -252,14 +253,14 @@ const update = async (req,res) =>{
     .then(async (users) => {
 
       console.log(userToUpdate)
-      
+
       let userIsset = false;
       users.forEach(user => {
-        if(user && user._id != userIdentity.id){
+        if (user && user._id != userIdentity.id) {
           userIsset = true;
         }
       });
-      
+
       // si existe un usuario con el mismo nick o email
       if (userIsset) {
         return res.status(200).send({
@@ -267,34 +268,34 @@ const update = async (req,res) =>{
           message: "El usuario ya existe",
         });
       }
-     
-      if(userToUpdate.password){
-          // cifrar la contraseña
-          let pwd = await bcrypt.hash(userToUpdate.password, 10);
-          // console.log(pwd)
-          userToUpdate.password = pwd;
+
+      if (userToUpdate.password) {
+        // cifrar la contraseña
+        let pwd = await bcrypt.hash(userToUpdate.password, 10);
+        // console.log(pwd)
+        userToUpdate.password = pwd;
       }
 
       //Buscar y actualizar
-      let userUpdated = await User.findByIdAndUpdate(userIdentity.id, userToUpdate,{new:true})
-      .then(async (userUpdated) => { 
+      let userUpdated = await User.findByIdAndUpdate(userIdentity.id, userToUpdate, { new: true })
+        .then(async (userUpdated) => {
 
 
-        return res.status(200).send({
-          status: "success",
-          message: "Metodo de actualizar usuario",
-          user: userUpdated
-        });
-
-      })
-      .catch((error) => {
-        // si llega un error
-        if (error)
-          return res.status(500).json({
-            status: "error",
-            message: "Error en la actualizar usuarios",
+          return res.status(200).send({
+            status: "success",
+            message: "Metodo de actualizar usuario",
+            user: userUpdated
           });
-      });
+
+        })
+        .catch((error) => {
+          // si llega un error
+          if (error)
+            return res.status(500).json({
+              status: "error",
+              message: "Error en la actualizar usuarios",
+            });
+        });
 
     })
     .catch((error) => {
@@ -310,10 +311,10 @@ const update = async (req,res) =>{
 
 }
 
-const upload = (req,res) =>{
+const upload = (req, res) => {
 
   // Recoger el fichero de imagen y comprobar que existe
-  if(!req.file){
+  if (!req.file) {
     return res.status(404).send({
       status: "error",
       message: "peticion no incluye la imagen"
@@ -324,10 +325,21 @@ const upload = (req,res) =>{
   let image = req.file.originalname;
 
   // Sacar la extension del archivo
-  let imageSplit = image.split("\.");
-  let extension = imageSplit[1];
+  let archivo_split = image.split("\.");
+  let extension = archivo_split[1];
 
-  // Comprobar extension
+  // Comprobar extension correcta
+  if (extension != "png" && extension != "jpg" &&
+    extension != "jpeg" && extension != "gif") {
+
+    //Borrar archivo y dar una respuesta
+    fs.unlink(req.file.path, (error) => {
+      return res.status(400).json({
+        status: "error",
+        mensaje: "Imagen invalida"
+      })
+    })
+  }
 
   // Si no ex correcta, borrar archivo
 
