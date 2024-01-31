@@ -9,6 +9,13 @@ const pruebaFollow = (req,res) => {
     });
 }
 
+// Accion de guardar un follow (accion seguir)
+
+// Accion de borrar un follow (accion dejar de seguir)
+
+// Acción listado de usuarios que estoy siguiendo
+
+//Exportar acciones
 module.exports = {
     pruebaFollow
 }
