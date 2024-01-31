@@ -339,6 +339,29 @@ const upload = (req, res) => {
         mensaje: "Imagen invalida"
       })
     })
+  } else {
+
+    //Recoger id articulo a editar
+    let userId = req.user.id;
+
+    //Buscar y actualizar el artículo
+    User.findOneAndUpdate({ _id: userId }, { image: req.file.filename }, { new: true }).then((userUpdated) => {
+
+      //Devolver respuestas
+      return res.status(200).json({
+        status: "success",
+        user: userUpdated,
+        file: req.file,
+      })
+    }).catch((error) => {
+      if (error) {
+        return res.status(500).json({
+          status: "error",
+          mensaje: "Error al editar el usuario"
+        });
+      }
+    });
+
   }
 
   // Si no ex correcta, borrar archivo
@@ -347,14 +370,14 @@ const upload = (req, res) => {
 
   // Devolver respuesta
 
-  return res.status(200).send({
-    status: "success",
-    message: "Subida de imagenes",
-    user: req.user,
-    file: req.file,
-    files: req.files,
-    image
-  })
+  // return res.status(200).send({
+  //   status: "success",
+  //   message: "Subida de imagenes",
+  //   user: req.user,
+  //   file: req.file,
+  //   files: req.files,
+  //   image
+  // })
 }
 
 module.exports = {
