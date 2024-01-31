@@ -281,7 +281,7 @@
   "email": "trinity3@trinity3.com",
   "password": "$2b$10$13tMAfgvGCqOn7wajXPf/.BLWpQkgcviV98iU8ULt9afrF4gvy3Tm",
   "role": "role_user",
-  "image": "default.png",
+  "image": "avatar-1706737334095-lechuga_test.jpg",
   "created_at": {
     "$date": "2024-01-30T20:59:22.455Z"
   },
