@@ -83,35 +83,56 @@ const unfollow = async (req, res) => {
 }
 
 // Acción listado de usuarios que estoy siguiendo (siguiendo)
-const following = (req,res) => {
+const following = (req, res) => {
     // Sacar el id del usuario identificado
     let userId = req.user.id;
 
     // Comprobar si me llega el id por parametro en url
-    if(req.params.id) userId = req.params.id;
+    if (req.params.id) userId = req.params.id;
 
     // Comprobar si me llega la pagina, si no la pagina 1
     let page = 1;
 
-    if(req.params.page) page = req.params.page;
+    if (req.params.page) page = req.params.page;
 
     // Usuarios por pagina quiero mostrar
     const itemsPerPage = 5;
 
     // Find a follow, popular datos de los usuarios y paginar con mongoose paginate
+    Follow.find({ user: userId })
+        // User.find({
+        //     $or: [
+        //       { email: userToUpdate.email.toLowerCase() },
+        //       { nick: userToUpdate.nick.toLowerCase() },
+        //     ],
+        //   })
+        .then(async (follows) => {
 
-    // Listado de usuarios de trinity, y soy victor
-    // Sacar un array de ids de los usuarios que me siguen y los que sigo como victor
-    
-    return res.status(200).send({
-        status: "success",
-        message: "Listado de usuarios que estoy siguiendo",
-    });
+            // Listado de usuarios de trinity, y soy victor
+            // Sacar un array de ids de los usuarios que me siguen y los que sigo como victor
+
+            return res.status(200).send({
+                status: "success",
+                message: "Listado de usuarios que estoy siguiendo",
+                follows
+            });
+
+        })
+        .catch((error) => {
+            // si llega un error
+            if (error)
+                return res.status(500).json({
+                    status: "error",
+                    message: "Error en la consulta de usuarios",
+                    error
+                });
+        });
+
 }
 
 // Acción listado de usuarios que siguen a cualquier otro usuario (soy seguido, mis seguidores)
-const followers = (req,res) => {
-    
+const followers = (req, res) => {
+
     return res.status(200).send({
         status: "success",
         message: "Listado de usuarios que me siguen",
