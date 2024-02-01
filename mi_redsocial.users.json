@@ -248,7 +248,7 @@
   "email": "ray@ray.com",
   "password": "$2b$10$pl1gyFWjokY3PvEZiunzr.1ILZ74dptQMZMHVpRpGu4io0s9dUu3O",
   "role": "role_user",
-  "image": "default.png",
+  "image": "avatar-1706819720853-lechuga_test.jpg",
   "created_at": {
     "$date": "2024-01-29T22:11:25.876Z"
   },
@@ -274,14 +274,14 @@
   "_id": {
     "$oid": "65b9632ab316928ac27140f6"
   },
-  "name": "Trinity3",
+  "name": "Trinity3_test",
   "surname": "Matrix3",
   "bio": "Hola soy trinity3",
   "nick": "trinity3",
   "email": "trinity3@trinity3.com",
-  "password": "$2b$10$13tMAfgvGCqOn7wajXPf/.BLWpQkgcviV98iU8ULt9afrF4gvy3Tm",
+  "password": "$2b$10$HCkIvCK8iUqhP4CVoYmNtecArSS8ZnQf794Yu78vL0mOTpO3R1rKy",
   "role": "role_user",
-  "image": "avatar-1706737334095-lechuga_test.jpg",
+  "image": "avatar-1706819664310-lechuga_test.jpg",
   "created_at": {
     "$date": "2024-01-30T20:59:22.455Z"
   },

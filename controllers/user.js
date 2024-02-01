@@ -74,6 +74,7 @@ const register = (req, res) => {
               message: "Error al guardar el usuario",
             });
         });
+        
     })
     .catch((error) => {
       // si llega un error
