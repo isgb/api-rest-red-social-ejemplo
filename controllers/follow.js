@@ -100,6 +100,7 @@ const following = (req, res) => {
 
     // Find a follow, popular datos de los usuarios y paginar con mongoose paginate
     Follow.find({ user: userId })
+    .populate("user followed")
         // User.find({
         //     $or: [
         //       { email: userToUpdate.email.toLowerCase() },
