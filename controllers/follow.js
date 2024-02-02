@@ -96,7 +96,7 @@ const following = async (req, res) => {
     // if (req.params.page) page = req.params.page;
 
     // Usuarios por pagina quiero mostrar
-    // const itemsPerPage = 5;
+    const itemsPerPage = 5;
 
     const user_id = req.params.id ?? req.user.id;
     const page = req.params.page ?? 1;
@@ -104,7 +104,7 @@ const following = async (req, res) => {
 
     const paginateOptions = {
         page: page,
-        limit: 5,
+        limit: itemsPerPage,
         populate: [
           { path: "user", select: "name surname" },
           { path: "followed", select: "-password -role -__v" },
@@ -135,9 +135,9 @@ const following = async (req, res) => {
           status: "success",
           following_users,
           total_following,
-          pages,
+        //   pages,
           // redondeamos con ceil el numero de paginas con usuarios a mostrar
-        //   pages: Math.ceil(total / itemsPerPage)
+          pages: Math.ceil(total_following / itemsPerPage)
         });
     
       } catch (error) {
