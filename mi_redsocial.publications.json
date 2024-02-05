@@ -1,0 +1,144 @@
+[{
+  "_id": {
+    "$oid": "65c1270f68cc52ce6f278226"
+  },
+  "text": "Hola como estas 1",
+  "created_at": {
+    "$date": "2024-02-05T18:21:03.537Z"
+  },
+  "user": {
+    "$oid": "65b8228d7e390214a722e34c"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65c1271268cc52ce6f278228"
+  },
+  "text": "Hola como estas 2",
+  "created_at": {
+    "$date": "2024-02-05T18:21:06.827Z"
+  },
+  "user": {
+    "$oid": "65b8228d7e390214a722e34c"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65c1271f68cc52ce6f27822a"
+  },
+  "text": "Hola como estas 3",
+  "created_at": {
+    "$date": "2024-02-05T18:21:19.985Z"
+  },
+  "user": {
+    "$oid": "65b8228d7e390214a722e34c"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65c1272368cc52ce6f27822c"
+  },
+  "text": "Hola como estas 4",
+  "created_at": {
+    "$date": "2024-02-05T18:21:23.502Z"
+  },
+  "user": {
+    "$oid": "65b8228d7e390214a722e34c"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65c1272668cc52ce6f27822e"
+  },
+  "text": "Hola como estas 5",
+  "created_at": {
+    "$date": "2024-02-05T18:21:26.849Z"
+  },
+  "user": {
+    "$oid": "65b8228d7e390214a722e34c"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65c1272a68cc52ce6f278230"
+  },
+  "text": "Hola como estas 6",
+  "created_at": {
+    "$date": "2024-02-05T18:21:30.512Z"
+  },
+  "user": {
+    "$oid": "65b8228d7e390214a722e34c"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65c1272e68cc52ce6f278232"
+  },
+  "text": "Hola como estas 7",
+  "created_at": {
+    "$date": "2024-02-05T18:21:34.266Z"
+  },
+  "user": {
+    "$oid": "65b8228d7e390214a722e34c"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65c1273468cc52ce6f278234"
+  },
+  "text": "Hola como estas 8",
+  "created_at": {
+    "$date": "2024-02-05T18:21:40.157Z"
+  },
+  "user": {
+    "$oid": "65b8228d7e390214a722e34c"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65c1273b68cc52ce6f278236"
+  },
+  "text": "Hola como estas 9",
+  "created_at": {
+    "$date": "2024-02-05T18:21:47.836Z"
+  },
+  "user": {
+    "$oid": "65b8228d7e390214a722e34c"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65c1274168cc52ce6f278238"
+  },
+  "text": "Hola como estas 10",
+  "created_at": {
+    "$date": "2024-02-05T18:21:53.634Z"
+  },
+  "user": {
+    "$oid": "65b8228d7e390214a722e34c"
+  },
+  "__v": 0,
+  "file": "avatar-1707160186573-gatocolor.jpg"
+},
+{
+  "_id": {
+    "$oid": "65c141f9270106c503743e6e"
+  },
+  "text": "Hola como estas 10",
+  "created_at": {
+    "$date": "2024-02-05T20:15:53.794Z"
+  },
+  "user": {
+    "$oid": "65b8208d7e390214a722e324"
+  },
+  "__v": 0
+}]

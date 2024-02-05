@@ -87,16 +87,6 @@ const unfollow = async (req, res) => {
 
 // Acción listado de usuarios que estoy siguiendo (siguiendo)
 const following = async (req, res) => {
-    // Sacar el id del usuario identificado
-    // let userId = req.user.id;
-
-    // Comprobar si me llega el id por parametro en url
-    // if (req.params.id) userId = req.params.id;
-
-    // Comprobar si me llega la pagina, si no la pagina 1
-    // let page = 1;
-
-    // if (req.params.page) page = req.params.page;
 
     // Usuarios por pagina quiero mostrar
     const itemsPerPage = 5;
@@ -155,33 +145,6 @@ const following = async (req, res) => {
         });
       }
 
-    // Find a follow, popular datos de los usuarios y paginar con mongoose paginate
-    // Follow.find({ user: userId })
-    // .populate("user followed","-password -role -__v")
-    //     .then(async (follows) => {
-
-    //         // Listado de usuarios de trinity, y soy victor
-    //         // Sacar un array de ids de los usuarios que me siguen y los que sigo como victor
-
-
-    //         return res.status(200).send({
-    //             status: "success",
-    //             message: "Listado de usuarios que estoy siguiendo",
-    //             follows,
-    //             total:totalPages
-    //         });
-
-    //     })
-    //     .catch((error) => {
-    //         // si llega un error
-    //         if (error)
-    //             return res.status(500).json({
-    //                 status: "error",
-    //                 message: "Error en la consulta de usuarios",
-    //                 error
-    //             });
-    //     });
-
 }
 
 // Acción listado de usuarios que siguen a cualquier otro usuario (soy seguido, mis seguidores)
@@ -198,7 +161,7 @@ const followers = async (req, res) => {
       limit: itemsPerPage,
       populate: [
         // { path: "user", select: "name surname" },
-        { path: "user", select: "-password -role -__v" },
+        { path: "user", select: "-password -role -__v -email" },
       ],
       collation: {
         locale: "en",
