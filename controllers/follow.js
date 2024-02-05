@@ -2,6 +2,9 @@
 const Follow = require('../models/follow');
 const User = require("../models/user");
 
+// Importar servicio
+const followService = require("../services/followService")
+
 // Importar dependencias
 const mongoosePaginate = require("mongoose-paginate-v2");
 
@@ -122,6 +125,8 @@ const following = async (req, res) => {
             totalDocs: total_following,
             totalPages: pages,
           } = await Follow.paginate(query, paginateOptions);
+
+          let followUserIds = await followService.followUserIds(req.user.id)
     
         // si no existe un usuario devolvermos el error
         if (!following_users)
@@ -137,7 +142,9 @@ const following = async (req, res) => {
           total_following,
         //   pages,
           // redondeamos con ceil el numero de paginas con usuarios a mostrar
-          pages: Math.ceil(total_following / itemsPerPage)
+          pages: Math.ceil(total_following / itemsPerPage),
+          user_following: followUserIds.following,
+          user_follow_me: followUserIds.followers
         });
     
       } catch (error) {
@@ -175,18 +182,65 @@ const following = async (req, res) => {
     //             });
     //     });
 
-
-        
-
 }
 
 // Acción listado de usuarios que siguen a cualquier otro usuario (soy seguido, mis seguidores)
-const followers = (req, res) => {
+const followers = async (req, res) => {
 
-    return res.status(200).send({
+  const itemsPerPage = 5;
+
+  const user_id = req.params.id ?? req.user.id;
+  const page = req.params.page ?? 1;    
+  const query = { user: user_id };
+
+  const paginateOptions = {
+      page: page,
+      limit: itemsPerPage,
+      populate: [
+        // { path: "user", select: "name surname" },
+        { path: "user", select: "-password -role -__v" },
+      ],
+      collation: {
+        locale: "en",
+      },
+    };
+ 
+    try {
+      // obtenes los usuarios
+      const {
+          docs: following_users,
+          totalDocs: total_following,
+          totalPages: pages,
+        } = await Follow.paginate(query, paginateOptions);
+
+        let followUserIds = await followService.followUserIds(req.user.id)
+  
+      // si no existe un usuario devolvermos el error
+      if (!following_users)
+        return res.status(404).json({
+          status: "Error",
+          message: "No se han encontrado usuarios",
+        });
+  
+      // devolver el resultado si todo a salido bien
+      return res.status(200).send({
         status: "success",
-        message: "Listado de usuarios que me siguen",
-    });
+        following_users,
+        total_following,
+        // redondeamos con ceil el numero de paginas con usuarios a mostrar
+        pages: Math.ceil(total_following / itemsPerPage),
+        user_following: followUserIds.following,
+        user_follow_me: followUserIds.followers
+      });
+  
+    } catch (error) {
+      return res.status(404).json({
+        status: "Error",
+        message: "Error en la consulta de usuarios",
+        error: error.message,
+      });
+    }
+
 }
 //Exportar acciones
 module.exports = {

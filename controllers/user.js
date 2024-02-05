@@ -3,6 +3,7 @@ const bcrypt = require("bcrypt");
 const mongoosePagination = require("mongoose-pagination")
 const User = require("../models/user");
 const jwt = require('../services/jwt')
+const followService = require("../services/followService")
 const { param } = require("../routes/user");
 const fs = require("fs");
 const path = require("path");
@@ -160,11 +161,16 @@ const profile = async (req, res) => {
         });
       }
 
+      // Info del seguimiento
+      const followInfo = await followService.followThisUser(req.user.id,id);
+
       // Devolver el resultado
       // Posteriormente: devolver informacion de follows
       return res.status(200).send({
         status: "success",
-        user: userProfile
+        user: userProfile,
+        following: followInfo.following,
+        follower:followInfo.follower
       });
 
     })
@@ -211,6 +217,8 @@ const list = async (req, res) => {
         message: "No se han encontrado usuarios",
       });
 
+    let followUserIds = await followService.followUserIds(req.user.id)
+
     // devolver el resultado si todo a salido bien
     return res.status(200).send({
       status: "success",
@@ -219,7 +227,9 @@ const list = async (req, res) => {
       itemsPerPage,
       total,
       // redondeamos con ceil el numero de paginas con usuarios a mostrar
-      pages: Math.ceil(total / itemsPerPage)
+      pages: Math.ceil(total / itemsPerPage),
+      user_following : followUserIds.following,
+      user_follow_me : followUserIds.followers
     });
 
   } catch (error) {
