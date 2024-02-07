@@ -194,7 +194,7 @@ const list = async (req, res) => {
     page: page,
     limit: itemsPerPage,
     sort: { _id: -1 },
-    populate: [{ path: "user", select: "-password -__v -role -email" }],
+    populate: [ { path: "user", select: "-password -__v -role -email", options: {strictPopulate: false} }],
     collation: {
       locale: "es",
     },
