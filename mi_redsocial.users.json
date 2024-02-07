@@ -252,7 +252,8 @@
   "created_at": {
     "$date": "2024-01-29T22:11:25.876Z"
   },
-  "__v": 0
+  "__v": 0,
+  "bio": "Soy un desarrollador"
 },
 {
   "_id": {
