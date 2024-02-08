@@ -242,18 +242,18 @@
   "_id": {
     "$oid": "65b8228d7e390214a722e34c"
   },
-  "name": "Ray",
-  "surname": "Liota",
+  "name": "Ray 2",
+  "surname": "Liota 2",
   "nick": "rayliota",
   "email": "ray@ray.com",
-  "password": "$2b$10$pl1gyFWjokY3PvEZiunzr.1ILZ74dptQMZMHVpRpGu4io0s9dUu3O",
+  "password": "$2b$10$xc1diE8ukScl86KNuhNevuLW5lFfDaPKwgxhMTAMKmqCb3wVQlRhm",
   "role": "role_user",
-  "image": "avatar-1706819720853-lechuga_test.jpg",
+  "image": "avatar-1707339752923-hamburguesa.jpg",
   "created_at": {
     "$date": "2024-01-29T22:11:25.876Z"
   },
   "__v": 0,
-  "bio": "Soy un desarrollador"
+  "bio": "Soy un desarrollador y soy profesor"
 },
 {
   "_id": {
