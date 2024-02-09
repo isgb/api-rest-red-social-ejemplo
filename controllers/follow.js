@@ -160,8 +160,8 @@ const followers = async (req, res) => {
 
     // const query = { followed: followUserIds.followers };
   // : { $in: [<value1>, <value2>, ... <valueN> ] }
-  console.log(followUserIds)
-  const query = { followed: { $in: [followUserIds.followers] }};
+  // console.log(followUserIds.followers.valueOf())
+  const query = { followed: { $in: [followUserIds.followers.valueOf()] }};
 
   const paginateOptions = {
       page: page,
