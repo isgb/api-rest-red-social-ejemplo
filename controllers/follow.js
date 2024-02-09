@@ -154,14 +154,14 @@ const followers = async (req, res) => {
 
   const user_id = req.params.id ?? req.user.id;
   const page = req.params.page ?? 1;    
-  const query = { user: user_id };
+  const query = { followed: user_id };
 
   const paginateOptions = {
       page: page,
       limit: itemsPerPage,
       populate: [
-        // { path: "user", select: "name surname" },
-        { path: "user", select: "-password -role -__v -email" },
+        { path: "user", select: "name surname" },
+        { path: "followed", select: "-password -role -__v -email" },
       ],
       collation: {
         locale: "en",
