@@ -150,17 +150,24 @@ const following = async (req, res) => {
 // Acción listado de usuarios que siguen a cualquier otro usuario (soy seguido, mis seguidores)
 const followers = async (req, res) => {
 
+  let followUserIds = await followService.followUserIds(req.user.id)
+
   const itemsPerPage = 5;
 
   const user_id = req.params.id ?? req.user.id;
   const page = req.params.page ?? 1;    
-  const query = { followed: user_id };
+  // const query = { followed: user_id };
+
+    // const query = { followed: followUserIds.followers };
+  // : { $in: [<value1>, <value2>, ... <valueN> ] }
+  console.log(followUserIds)
+  const query = { followed: { $in: [followUserIds.followers] }};
 
   const paginateOptions = {
       page: page,
       limit: itemsPerPage,
       populate: [
-        { path: "user", select: "name surname" },
+        // { path: "user", select: "name surname" },
         { path: "followed", select: "-password -role -__v -email" },
       ],
       collation: {
