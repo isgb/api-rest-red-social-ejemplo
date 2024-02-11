@@ -141,4 +141,126 @@
     "$oid": "65b8208d7e390214a722e324"
   },
   "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65c8290a0020133eea733e80"
+  },
+  "user": {
+    "$oid": "65b8228d7e390214a722e34c"
+  },
+  "text": "Hola que tal",
+  "created_at": {
+    "$date": "2024-02-11T01:55:22.983Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65c8292a0020133eea733e82"
+  },
+  "user": {
+    "$oid": "65b8228d7e390214a722e34c"
+  },
+  "text": "Hola que tal",
+  "created_at": {
+    "$date": "2024-02-11T01:55:54.121Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65c829880020133eea733e84"
+  },
+  "user": {
+    "$oid": "65b8228d7e390214a722e34c"
+  },
+  "text": "Hola que tal TEST",
+  "created_at": {
+    "$date": "2024-02-11T01:57:28.950Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65c829ab0020133eea733e91"
+  },
+  "user": {
+    "$oid": "65b8228d7e390214a722e34c"
+  },
+  "text": "ASAF",
+  "created_at": {
+    "$date": "2024-02-11T01:58:03.463Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65c83dab0020133eea733ebf"
+  },
+  "user": {
+    "$oid": "65b8228d7e390214a722e34c"
+  },
+  "text": "Nueva publicacion con imagen adjunta",
+  "created_at": {
+    "$date": "2024-02-11T03:23:23.317Z"
+  },
+  "__v": 0,
+  "file": "avatar-1707621813181-238374203_1114643082401574_5202135472556711785_n.jpg"
+},
+{
+  "_id": {
+    "$oid": "65c83ead0020133eea733ecd"
+  },
+  "user": {
+    "$oid": "65b8228d7e390214a722e34c"
+  },
+  "text": "Nueva publicacion con imagen adjunta",
+  "created_at": {
+    "$date": "2024-02-11T03:27:41.170Z"
+  },
+  "__v": 0,
+  "file": "avatar-1707622061360-238374203_1114643082401574_5202135472556711785_n.jpg"
+},
+{
+  "_id": {
+    "$oid": "65c83ed40020133eea733ed0"
+  },
+  "user": {
+    "$oid": "65b8228d7e390214a722e34c"
+  },
+  "text": "Nueva publicacion con imagen adjunta",
+  "created_at": {
+    "$date": "2024-02-11T03:28:20.783Z"
+  },
+  "__v": 0,
+  "file": "avatar-1707622100977-238374203_1114643082401574_5202135472556711785_n.jpg"
+},
+{
+  "_id": {
+    "$oid": "65c83f070020133eea733ed3"
+  },
+  "user": {
+    "$oid": "65b8228d7e390214a722e34c"
+  },
+  "text": "Nueva publicacion con imagen adjunta",
+  "created_at": {
+    "$date": "2024-02-11T03:29:11.438Z"
+  },
+  "__v": 0,
+  "file": "avatar-1707622151745-238374203_1114643082401574_5202135472556711785_n.jpg"
+},
+{
+  "_id": {
+    "$oid": "65c83f590020133eea733ee1"
+  },
+  "user": {
+    "$oid": "65b8228d7e390214a722e34c"
+  },
+  "text": "Nueva publicacion con imagen adjunta",
+  "created_at": {
+    "$date": "2024-02-11T03:30:33.329Z"
+  },
+  "__v": 0,
+  "file": "avatar-1707622234113-238374203_1114643082401574_5202135472556711785_n.jpg"
 }]
