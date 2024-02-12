@@ -8,6 +8,7 @@ const { param } = require("../routes/user");
 const fs = require("fs");
 const path = require("path");
 const Publication = require("../models/publication");
+const validate = require("../helpers/validate");
 
 // Acciones de prueba
 const pruebaUser = (req, res) => {
@@ -27,6 +28,16 @@ const register = (req, res) => {
     return res.status(400).json({
       status: "error",
       message: "Faltan datos por enviar",
+    });
+  }
+
+  try {
+    // Validacion avanzada
+    validate(params);
+  } catch (error) {
+    return res.status(400).json({
+      status: "error",
+      message: "Validación no superada",
     });
   }
 
@@ -194,7 +205,13 @@ const list = async (req, res) => {
     page: page,
     limit: itemsPerPage,
     sort: { _id: -1 },
-    populate: [ { path: "user", select: "-password -__v -role -email", options: {strictPopulate: false} }],
+    populate: [
+      {
+        path: "user",
+        select: "-password -__v -role -email",
+        options: { strictPopulate: false },
+      },
+    ],
     collation: {
       locale: "es",
     },
@@ -280,9 +297,8 @@ const update = async (req, res) => {
         let pwd = await bcrypt.hash(userToUpdate.password, 10);
         // console.log(pwd)
         userToUpdate.password = pwd;
-
-      }else{
-        delete userToUpdate.password
+      } else {
+        delete userToUpdate.password;
       }
 
       //Buscar y actualizar
@@ -405,19 +421,17 @@ const counters = async (req, res) => {
   try {
     const myFollows = await followService.followUserIds(req.user.id);
     const publications = await Publication.find({ user: userId });
-     return res
-      .status(200)
-      .send({
-        userId,
-        following: myFollows.following.length,
-        followed: myFollows.followers.length,
-        publications: publications.length,
-      });
+    return res.status(200).send({
+      userId,
+      following: myFollows.following.length,
+      followed: myFollows.followers.length,
+      publications: publications.length,
+    });
   } catch (error) {
-    return res.status(500).send({ 
-      status: "error", 
-      message: "Error en los contadores", 
-      error 
+    return res.status(500).send({
+      status: "error",
+      message: "Error en los contadores",
+      error,
     });
   }
 };
@@ -431,5 +445,5 @@ module.exports = {
   update,
   upload,
   avatar,
-  counters
+  counters,
 };
