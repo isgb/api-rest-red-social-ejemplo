@@ -1,70 +1,5 @@
 [{
   "_id": {
-    "$oid": "65c1270f68cc52ce6f278226"
-  },
-  "text": "Hola como estas 1",
-  "created_at": {
-    "$date": "2024-02-05T18:21:03.537Z"
-  },
-  "user": {
-    "$oid": "65b8228d7e390214a722e34c"
-  },
-  "__v": 0
-},
-{
-  "_id": {
-    "$oid": "65c1271268cc52ce6f278228"
-  },
-  "text": "Hola como estas 2",
-  "created_at": {
-    "$date": "2024-02-05T18:21:06.827Z"
-  },
-  "user": {
-    "$oid": "65b8228d7e390214a722e34c"
-  },
-  "__v": 0
-},
-{
-  "_id": {
-    "$oid": "65c1271f68cc52ce6f27822a"
-  },
-  "text": "Hola como estas 3",
-  "created_at": {
-    "$date": "2024-02-05T18:21:19.985Z"
-  },
-  "user": {
-    "$oid": "65b8228d7e390214a722e34c"
-  },
-  "__v": 0
-},
-{
-  "_id": {
-    "$oid": "65c1272368cc52ce6f27822c"
-  },
-  "text": "Hola como estas 4",
-  "created_at": {
-    "$date": "2024-02-05T18:21:23.502Z"
-  },
-  "user": {
-    "$oid": "65b8228d7e390214a722e34c"
-  },
-  "__v": 0
-},
-{
-  "_id": {
-    "$oid": "65c1272668cc52ce6f27822e"
-  },
-  "text": "Hola como estas 5",
-  "created_at": {
-    "$date": "2024-02-05T18:21:26.849Z"
-  },
-  "user": {
-    "$oid": "65b8228d7e390214a722e34c"
-  },
-  "__v": 0
-},
-{
-  "_id": {
     "$oid": "65c1272a68cc52ce6f278230"
   },
   "text": "Hola como estas 6",
@@ -183,47 +118,6 @@
 },
 {
   "_id": {
-    "$oid": "65c829ab0020133eea733e91"
-  },
-  "user": {
-    "$oid": "65b8228d7e390214a722e34c"
-  },
-  "text": "ASAF",
-  "created_at": {
-    "$date": "2024-02-11T01:58:03.463Z"
-  },
-  "__v": 0
-},
-{
-  "_id": {
-    "$oid": "65c83dab0020133eea733ebf"
-  },
-  "user": {
-    "$oid": "65b8228d7e390214a722e34c"
-  },
-  "text": "Nueva publicacion con imagen adjunta",
-  "created_at": {
-    "$date": "2024-02-11T03:23:23.317Z"
-  },
-  "__v": 0,
-  "file": "avatar-1707621813181-238374203_1114643082401574_5202135472556711785_n.jpg"
-},
-{
-  "_id": {
-    "$oid": "65c83ead0020133eea733ecd"
-  },
-  "user": {
-    "$oid": "65b8228d7e390214a722e34c"
-  },
-  "text": "Nueva publicacion con imagen adjunta",
-  "created_at": {
-    "$date": "2024-02-11T03:27:41.170Z"
-  },
-  "__v": 0,
-  "file": "avatar-1707622061360-238374203_1114643082401574_5202135472556711785_n.jpg"
-},
-{
-  "_id": {
     "$oid": "65c83ed40020133eea733ed0"
   },
   "user": {
@@ -252,15 +146,133 @@
 },
 {
   "_id": {
-    "$oid": "65c83f590020133eea733ee1"
+    "$oid": "65c91a105f1116819ee984b2"
   },
   "user": {
     "$oid": "65b8228d7e390214a722e34c"
   },
-  "text": "Nueva publicacion con imagen adjunta",
+  "text": "ffdsf",
   "created_at": {
-    "$date": "2024-02-11T03:30:33.329Z"
+    "$date": "2024-02-11T19:03:45.049Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65c91a145f1116819ee984b4"
+  },
+  "user": {
+    "$oid": "65b8228d7e390214a722e34c"
+  },
+  "text": "ffdsffsaf",
+  "created_at": {
+    "$date": "2024-02-11T19:03:48.734Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65c91a1a5f1116819ee984b6"
+  },
+  "user": {
+    "$oid": "65b8228d7e390214a722e34c"
+  },
+  "text": "eseeer",
+  "created_at": {
+    "$date": "2024-02-11T19:03:54.650Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65c91a1c5f1116819ee984b8"
+  },
+  "user": {
+    "$oid": "65b8228d7e390214a722e34c"
+  },
+  "text": "eseeer",
+  "created_at": {
+    "$date": "2024-02-11T19:03:56.601Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65c91a1f5f1116819ee984ba"
+  },
+  "user": {
+    "$oid": "65b8228d7e390214a722e34c"
+  },
+  "text": "eseeer1",
+  "created_at": {
+    "$date": "2024-02-11T19:03:59.575Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65c921ac5f1116819ee98556"
+  },
+  "user": {
+    "$oid": "65b8208d7e390214a722e324"
+  },
+  "text": "test1",
+  "created_at": {
+    "$date": "2024-02-11T19:36:12.520Z"
   },
   "__v": 0,
-  "file": "avatar-1707622234113-238374203_1114643082401574_5202135472556711785_n.jpg"
+  "file": "avatar-1707680173533-22800b3badd49293ff534d5499e844e7.jpg"
+},
+{
+  "_id": {
+    "$oid": "65c923ef5f1116819ee985ec"
+  },
+  "user": {
+    "$oid": "65b8208d7e390214a722e324"
+  },
+  "text": "Una nueva",
+  "created_at": {
+    "$date": "2024-02-11T19:45:51.145Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65c924035f1116819ee985ee"
+  },
+  "user": {
+    "$oid": "65b8208d7e390214a722e324"
+  },
+  "text": "Una nueva imagen",
+  "created_at": {
+    "$date": "2024-02-11T19:46:11.968Z"
+  },
+  "__v": 0,
+  "file": "avatar-1707680771990-63726b47b8c3774bf701dc806ceec3d3.jpg"
+},
+{
+  "_id": {
+    "$oid": "65c924775f1116819ee98602"
+  },
+  "user": {
+    "$oid": "65b8228d7e390214a722e34c"
+  },
+  "text": "fdasasf",
+  "created_at": {
+    "$date": "2024-02-11T19:48:07.663Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65c933435f1116819ee98637"
+  },
+  "user": {
+    "$oid": "65b8228d7e390214a722e34c"
+  },
+  "text": "TEST 2",
+  "created_at": {
+    "$date": "2024-02-11T20:51:15.087Z"
+  },
+  "__v": 0
 }]

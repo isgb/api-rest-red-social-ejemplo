@@ -287,4 +287,38 @@
     "$date": "2024-01-30T20:59:22.455Z"
   },
   "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65c93a66dbe2741d532c6f13"
+  },
+  "name": "Manolo",
+  "surname": "manolo",
+  "bio": "Hola soy manolo",
+  "nick": "manolillo",
+  "email": "manolo@manolo.com",
+  "password": "$2b$10$dGMYiN6fCEYNAnggsnI5dudLdVXnkxRKV1vWEZqaZjx84i/cqWaG6",
+  "role": "role_user",
+  "image": "default.png",
+  "created_at": {
+    "$date": "2024-02-11T21:21:42.511Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65c93f83bbd11d0b23aaab55"
+  },
+  "name": "ana",
+  "surname": "lopez",
+  "bio": "Hola soy manolo",
+  "nick": "anita",
+  "email": "ana@ana.com",
+  "password": "$2b$10$E0vGnkYIuee.vyqz2wxph.NYtHbYw43eaDxOeSbztUg7//0phWcLK",
+  "role": "role_user",
+  "image": "default.png",
+  "created_at": {
+    "$date": "2024-02-11T21:43:31.154Z"
+  },
+  "__v": 0
 }]
